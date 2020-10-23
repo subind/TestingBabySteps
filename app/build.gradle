@@ -42,10 +42,10 @@ dependencies {
 
     // Local Unit Tests
     testImplementation 'junit:junit:4.13.1'
-    testImplementation "com.google.truth:truth:1.0.1"
+    testImplementation "com.google.truth:truth:1.0.1" //Helps in making assertions that are readable
 
     // Instrumented Unit Tests
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation "com.google.truth:truth:1.0.1"
+    androidTestImplementation "com.google.truth:truth:1.0.1" //Helps in making assertions that are readable
 }
