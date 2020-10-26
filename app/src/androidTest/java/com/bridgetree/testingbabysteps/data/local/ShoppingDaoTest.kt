@@ -15,6 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+//Source: https://www.youtube.com/watch?v=xGbr9LOSbC0&list=PLQkwcJG4YTCSYJ13G4kVIJ10X5zisB2Lq&index=6
 //As per testing pyramid where there are 3 layers, base(unitTests), mid(integratedTests), top(uiTests)
 //Here SmallTest annotation indicates that these are uniTests, similarly there are MediumTest & LargeTest annotation
 @RunWith(AndroidJUnit4::class)
