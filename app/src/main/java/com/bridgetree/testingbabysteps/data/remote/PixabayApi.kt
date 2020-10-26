@@ -8,6 +8,7 @@ import retrofit2.http.Query
 
 interface PixabayApi {
 
+    //Note that the API_KEY is added in the 'gradle.properties' file, which is excluded from git, i.e, gitIgnored
     @GET("/api/")
     suspend fun searchForImage(
         @Query("q") searchQuery: String,
