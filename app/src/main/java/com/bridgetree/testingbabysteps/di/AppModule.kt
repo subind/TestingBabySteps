@@ -2,11 +2,13 @@ package com.bridgetree.testingbabysteps.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
+import com.bridgetree.testingbabysteps.data.local.ShoppingDao
 import com.bridgetree.testingbabysteps.data.local.ShoppingItemDatabase
-import com.bridgetree.testingbabysteps.data.remote.PixabayApi
+import com.bridgetree.testingbabysteps.data.remote.PixabayAPI
 import com.bridgetree.testingbabysteps.other.Constants.BASE_URL
 import com.bridgetree.testingbabysteps.other.Constants.DATABASE_NAME
+import com.bridgetree.testingbabysteps.respositories.DefaultShoppingRepository
+import com.bridgetree.testingbabysteps.respositories.ShoppingRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,11 +38,18 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providePixabayApi(): PixabayApi{
+    fun providePixabayApi(): PixabayAPI{
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
             .build()
-            .create(PixabayApi::class.java)
+            .create(PixabayAPI::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideDefaultShoppingRepository(
+            dao: ShoppingDao,
+            api: PixabayAPI
+    ) = DefaultShoppingRepository(dao, api) as ShoppingRepository
 }

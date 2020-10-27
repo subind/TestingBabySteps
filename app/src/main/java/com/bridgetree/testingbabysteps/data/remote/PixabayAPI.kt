@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface PixabayApi {
+interface PixabayAPI {
 
     //Note that the API_KEY is added in the 'gradle.properties' file, which is excluded from git, i.e, gitIgnored
     @GET("/api/")
