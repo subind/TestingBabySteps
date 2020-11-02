@@ -74,7 +74,7 @@ class ShoppingViewModelTest{
 
 
     @Test
-    fun `image url is empty, after successful insert, returns true`(){
+    fun `image url is empty after successful insert, returns true`(){
         viewModel.insertShoppingItem("subind", "9", "3.0")
 
         val value = viewModel.curImageUrl.getOrAwaitValueTest()
@@ -83,7 +83,7 @@ class ShoppingViewModelTest{
 
 
     @Test
-    fun `set url is same in liveData returns true`(){
+    fun `set url data is also same in liveData, returns true`(){
         viewModel.setCurImageUrl(TEST_IMG_URL)
 
         val value = viewModel.curImageUrl.getOrAwaitValueTest()
