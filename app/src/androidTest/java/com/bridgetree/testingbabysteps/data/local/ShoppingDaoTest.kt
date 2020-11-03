@@ -56,12 +56,6 @@ class ShoppingDaoTest {
         database.close()
     }
 
-    fun testLaunchFragmentInHiltContainer(){
-        launchFragmentInHiltContainer<ShoppingFragment> {
-
-        }
-    }
-
 
     //getOrAwaitValue() is obtained by inserting a file provided by google "LiveDataUtilAndroidTest.kt"
     //in-order to get the actual list instead of LiveData,
