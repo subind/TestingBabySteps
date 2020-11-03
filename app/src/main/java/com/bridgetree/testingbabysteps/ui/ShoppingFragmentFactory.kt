@@ -3,12 +3,14 @@ package com.bridgetree.testingbabysteps.ui
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.bridgetree.testingbabysteps.adapters.ImageAdapter
+import com.bridgetree.testingbabysteps.adapters.ShoppingItemAdapter
 import com.bumptech.glide.RequestManager
 import javax.inject.Inject
 
 class ShoppingFragmentFactory @Inject constructor(
     private val imageAdapter: ImageAdapter,
-    private val glide: RequestManager
+    private val glide: RequestManager,
+    private val shoppingItemAdapter: ShoppingItemAdapter
 ): FragmentFactory() {
 
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
@@ -16,6 +18,8 @@ class ShoppingFragmentFactory @Inject constructor(
             ImagePickFragment::class.java.name -> ImagePickFragment(imageAdapter)
 
             AddShoppingItemFragment::class.java.name -> AddShoppingItemFragment(glide)
+
+            ShoppingFragment::class.java.name -> ShoppingFragment(shoppingItemAdapter)
 
             else -> super.instantiate(classLoader, className)
         }
