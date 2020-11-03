@@ -2,6 +2,7 @@ package com.bridgetree.testingbabysteps.di
 
 import android.content.Context
 import androidx.room.Room
+import com.bridgetree.testingbabysteps.R
 import com.bridgetree.testingbabysteps.data.local.ShoppingDao
 import com.bridgetree.testingbabysteps.data.local.ShoppingItemDatabase
 import com.bridgetree.testingbabysteps.data.remote.PixabayAPI
@@ -9,6 +10,8 @@ import com.bridgetree.testingbabysteps.other.Constants.BASE_URL
 import com.bridgetree.testingbabysteps.other.Constants.DATABASE_NAME
 import com.bridgetree.testingbabysteps.respositories.DefaultShoppingRepository
 import com.bridgetree.testingbabysteps.respositories.ShoppingRepository
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,4 +55,13 @@ object AppModule {
             dao: ShoppingDao,
             api: PixabayAPI
     ) = DefaultShoppingRepository(dao, api) as ShoppingRepository
+
+    @Singleton
+    @Provides
+    fun provideGlideInstance(
+        @ApplicationContext context: Context
+    ) = Glide.with(context).setDefaultRequestOptions(
+        RequestOptions().placeholder(R.drawable.ic_image).error(R.drawable.ic_image)
+    )
+
 }
