@@ -33,6 +33,7 @@ class ShoppingDaoTest {
     var hiltRule = HiltAndroidRule(this)
 
     //Make every line of code execute/run one after another
+    //Not having this line will result in failed tests
     @get: Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -56,7 +57,7 @@ class ShoppingDaoTest {
         database.close()
     }
 
-
+    //runBlocking is used since we dont want multithreading in our test cases, this ensures it runs on the main thread
     //getOrAwaitValue() is obtained by inserting a file provided by google "LiveDataUtilAndroidTest.kt"
     //in-order to get the actual list instead of LiveData,
     //It might be clear by now that we are explicitly running everything on the main thread.
@@ -65,6 +66,9 @@ class ShoppingDaoTest {
         val shoppingItem = ShoppingItem("name", 1, 1f, "url", id = 1)
         dao.insertShoppingItem(shoppingItem)
 
+        //Here 'observeAllShoppingItems()' returns a liveData which is asynchronous by default,
+        //- but as we know we try to strictly maintain no multi-threading in our testCases, we use a
+        //- file provided by google that provides the 'getOrAwaitValue()'
         val allShoppingItems = dao.observeAllShoppingItems().getOrAwaitValue()
 
         assertThat(allShoppingItems).contains(shoppingItem)

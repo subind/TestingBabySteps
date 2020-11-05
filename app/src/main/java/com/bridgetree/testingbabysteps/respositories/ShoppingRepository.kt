@@ -6,6 +6,8 @@ import com.bridgetree.testingbabysteps.data.local.ShoppingItem
 import com.bridgetree.testingbabysteps.data.remote.responses.ImageResponse
 import com.bridgetree.testingbabysteps.other.Resource
 
+//One of the S.O.L.I.D principle
+
 interface ShoppingRepository {
 
     suspend fun insertShoppingItem(shoppingItem: ShoppingItem)

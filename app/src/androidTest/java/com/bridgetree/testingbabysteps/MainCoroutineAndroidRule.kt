@@ -10,6 +10,16 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
+/**
+ * If we don't use this class, it will result in the foll exception -
+ * IllegalStateException: Module with main dispatcher had failed to initialize
+ *
+ * Reason is that suspend calls use 'main-dispatcher' which is not available in tests,
+ * because coroutine main-dispatcher relies on main-looper which is only available in real app scenario
+ *
+ * Here we are in the test source-set which runs in JVM
+ */
+
 @ExperimentalCoroutinesApi
 class MainCoroutineAndroidRule(
         private val dispatcher: CoroutineDispatcher = TestCoroutineDispatcher()

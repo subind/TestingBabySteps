@@ -66,7 +66,7 @@ class ShoppingViewModel @ViewModelInject constructor(
         val shoppingItem = ShoppingItem(name, amount, priceString.toFloat(), _curImageUrl.value ?: "")
         insertShoppingItemIntoDb(shoppingItem)
         setCurImageUrl("")
-
+        _insertShoppingItemStatus.postValue(Event(Resource.success(shoppingItem)))
     }
 
     fun searchForImage(imageQuery: String){

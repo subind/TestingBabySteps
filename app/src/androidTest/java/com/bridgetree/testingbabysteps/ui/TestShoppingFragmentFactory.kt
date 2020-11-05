@@ -8,6 +8,13 @@ import com.bridgetree.testingbabysteps.respositories.FakeShoppingRepositoryAndro
 import com.bumptech.glide.RequestManager
 import javax.inject.Inject
 
+/**
+ * Purpose : Inject dependencies via constructor into our fragments
+ *
+ * This is the preferred way when it comes to testing, that we inject dependencies in the constructor
+ * & not as field injection, because this makes it more flexible & convenient
+ */
+
 class TestShoppingFragmentFactory @Inject constructor(
     private val imageAdapter: ImageAdapter,
     private val glide: RequestManager,
@@ -17,11 +24,14 @@ class TestShoppingFragmentFactory @Inject constructor(
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
         return when(className) {
             ImagePickFragment::class.java.name -> ImagePickFragment(imageAdapter)
+
             AddShoppingItemFragment::class.java.name -> AddShoppingItemFragment(glide)
+
             ShoppingFragment::class.java.name -> ShoppingFragment(
                 shoppingItemAdapter,
                 ShoppingViewModel(FakeShoppingRepositoryAndroidTest())
             )
+
             else -> super.instantiate(classLoader, className)
         }
     }

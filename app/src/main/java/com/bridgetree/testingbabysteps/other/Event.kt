@@ -1,5 +1,8 @@
 package com.bridgetree.testingbabysteps.other
 
+/**
+ * Helps us check whether the event was fired already
+ */
 open class Event<out T>(private val content: T) {
 
     var hasBeenHandled = false
